@@ -1,0 +1,8 @@
+.codeblock {
+  font-size: 3rem;
+  font-family: Iosevka;
+  line-height: 1.4;
+  border-radius: 8px;
+  padding: 64px;
+  border: 3px solid hsl(0deg 0% 100% / 0.5);
+}

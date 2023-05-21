@@ -1,0 +1,32 @@
+.svg {
+  margin-bottom: 20px;
+}
+
+.margin {
+  fill: hsl(31deg 78% 80% / var(--margin-opacity));
+}
+
+.border {
+  fill: hsl(41deg 88% 81% / var(--border-opacity));
+}
+
+.padding {
+  fill: hsl(68deg 38% 69% / var(--padding-opacity));
+}
+
+.content {
+  fill: hsl(195deg 26% 66% / var(--content-opacity));
+}
+
+.margin,
+.border,
+.padding,
+.content {
+  transition: color 500ms;
+}
+
+.caption {
+  text-align: center;
+  font-size: 3rem;
+  height: 3rem;
+}

@@ -1,0 +1,9 @@
+.wrapper {
+  text-align: center;
+}
+
+.label {
+  margin: 0;
+  margin-bottom: -16px;
+  font-size: 2rem;
+}

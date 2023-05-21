@@ -1,0 +1,8 @@
+.wrapper {
+  width: 80vw !important;
+  height: 80vh !important;
+}
+
+.fullHeight {
+  height: 100% !important;
+}

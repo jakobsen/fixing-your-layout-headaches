@@ -1,0 +1,31 @@
+.wrapper {
+  height: 750px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box {
+  width: 400px;
+  height: 400px;
+  color: white;
+  background-color: var(--pink);
+  border-radius: 8px;
+  padding: 50px;
+  border: 10px solid var(--text-color);
+  display: grid;
+  place-items: center;
+  font-size: 1.44rem;
+  text-align: center;
+}
+
+.fieldset {
+  padding: 16px 16px 24px;
+  border-radius: 2px;
+  display: flex;
+  gap: 24px;
+  font-size: 1.2rem;
+  width: max-content;
+  margin-inline: auto;
+}
