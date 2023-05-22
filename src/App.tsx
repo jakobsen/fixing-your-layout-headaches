@@ -10,6 +10,7 @@ import SectionTitle from "./components/SectionTitle";
 
 import styles from "./temp.module.css";
 import "./App.css";
+import Layouts from "./components/Layouts";
 
 function App() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -83,44 +84,7 @@ function App() {
       <Slide>
         <SectionTitle>position</SectionTitle>
       </Slide>
-      <Slide>
-        <ul
-          style={{
-            fontSize: "3rem",
-            display: "flex",
-            flexDirection: "column",
-            gap: "16px",
-          }}
-        >
-          <li>Normal flow</li>
-
-          <li>Table layout</li>
-
-          <li>Float layout</li>
-
-          <li>Positioned layout</li>
-
-          <li>Multi-column layout</li>
-
-          <li>Flexible box layout</li>
-
-          <li>Grid layout</li>
-        </ul>
-      </Slide>
-      <Slide>
-        <ul
-          style={{
-            fontSize: "3rem",
-            display: "flex",
-            flexDirection: "column",
-            gap: "16px",
-          }}
-        >
-          <li>Normal flow</li>
-
-          <li>Positioned layout</li>
-        </ul>
-      </Slide>
+      <Layouts />
       <Slide>
         <h2
           style={{
@@ -286,7 +250,89 @@ section {
       </Slide>
 
       <Slide>
-        <SectionTitle>to be continued ...</SectionTitle>
+        <SectionTitle>containing block</SectionTitle>
+      </Slide>
+
+      <Slide>
+        <Playground
+          initialStyles={`:root {
+  font-size: 20px;
+}
+          
+body {
+  font-family: 'Georgia';
+}
+
+main {
+  padding: 32px 16px;
+  font-family: 
+}
+
+h1 {
+  line-height: 1;
+  margin-bottom: 1em;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+figure {
+  margin-bottom: 1rem;
+}
+
+figcaption {
+  font-size: 18px;
+  color: #444;
+}
+
+.cta-link {
+  display: block;
+  color: white;
+  background: #444;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: Futura;
+  width: max-content;
+  font-size: 1.2em;
+}
+
+.cta-link:hover {
+  background: black;
+}
+`}
+          initialCode={`<style>
+  .cta-link {
+
+  }
+</style>
+
+<main>
+  <h1>Look at this great article</h1>
+  <section>
+    <p>It's so great!</p>
+    <p>It has a lot of content!</p>
+    <p>
+      And look, it even has a great picture,
+      and a great call to action button!
+    </p>
+    <figure>
+      <img
+        src="http://localhost:5173/skiers.jpg"
+      />
+      <a class="cta-link" href="#">
+        Come explore with us
+      </a>
+      <figcaption>
+        Photo by Fabrizio Conti on Unsplash
+      </figcaption>
+    </figure>
+    <p>That's some seriously high-quality content.</p>
+  </section>
+</main>
+`}
+        ></Playground>
       </Slide>
 
       <FullScreenButton scrollContainerRef={scrollRef} />

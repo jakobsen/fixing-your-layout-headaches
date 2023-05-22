@@ -1,5 +1,5 @@
 import { Sandpack } from "@codesandbox/sandpack-react";
-import { githubLight } from "@codesandbox/sandpack-themes";
+import { aquaBlue } from "@codesandbox/sandpack-themes";
 
 import styles from "./playground.styles.module.css";
 
@@ -21,14 +21,16 @@ export default function Playground({
         externalResources: ["/reset.css", "/styles.css"],
         classes: {
           "sp-wrapper": styles.wrapper,
-          "sp-layout": styles.fullHeight,
-          "sp-stack": styles.fullHeight,
+          "sp-layout": styles.layout,
+          "sp-tabs": styles.tabs,
+          "sp-stack": styles.stack,
+          "sp-code-editor": styles.codeEditor,
         },
       }}
       theme={{
-        ...githubLight,
+        ...aquaBlue,
         font: {
-          mono: `"Iosevka", ${githubLight.font.mono}`,
+          mono: `"Iosevka", ${aquaBlue.font.mono}`,
           size: "24px",
           lineHeight: "1.3",
         },
