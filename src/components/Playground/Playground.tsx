@@ -7,6 +7,7 @@ interface PlaygroundProps {
   initialCode: string;
   initialStyles?: string;
   showCssReset?: boolean;
+  id?: string;
 }
 
 export default function Playground({

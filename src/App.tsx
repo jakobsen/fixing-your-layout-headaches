@@ -31,11 +31,19 @@ function App() {
   return (
     <div className="app-scroll-container" ref={scrollRef}>
       <Slide>
-        <SectionTitle>Fixing your layout headaches</SectionTitle>
+        <SectionTitle>fixing your layout headaches.</SectionTitle>
       </Slide>
+
       <Slide>
-        <SectionTitle>css-for-js.dev</SectionTitle>
+        <SectionTitle>
+          <span style={{ textDecoration: "underline" }}>css-for-js.dev</span>
+        </SectionTitle>
       </Slide>
+
+      <Slide>
+        <SectionTitle>preliminary stuff.</SectionTitle>
+      </Slide>
+
       <Slide>
         <BoxModelDemo />
       </Slide>
@@ -286,7 +294,7 @@ figcaption {
   color: #444;
 }
 
-.cta-link {
+.cta-button {
   display: block;
   color: white;
   background: #444;
@@ -298,12 +306,12 @@ figcaption {
   font-size: 1.2em;
 }
 
-.cta-link:hover {
+.cta-button:hover {
   background: black;
 }
 `}
           initialCode={`<style>
-  .cta-link {
+  .cta-button {
 
   }
 </style>
@@ -321,7 +329,7 @@ figcaption {
       <img
         src="http://localhost:5173/skiers.jpg"
       />
-      <a class="cta-link" href="#">
+      <a class="cta-button" href="#">
         Come explore with us
       </a>
       <figcaption>
@@ -329,10 +337,433 @@ figcaption {
       </figcaption>
     </figure>
     <p>That's some seriously high-quality content.</p>
+    <p>
+      However, it would be very nice if we could center the
+      button on top of the image
+    </p>
   </section>
 </main>
 `}
         ></Playground>
+      </Slide>
+
+      <Slide>
+        <ol>
+          <li>
+            If the <code>position</code> property is{" "}
+            <strong>
+              <code>static</code>
+            </strong>
+            ,{" "}
+            <strong>
+              <code>relative</code>
+            </strong>
+            , or{" "}
+            <strong>
+              <code>sticky</code>
+            </strong>
+            , the containing block is formed by the edge of the{" "}
+            <em>content box</em> of the nearest ancestor element that is either{" "}
+            <strong>a block container</strong> (such as an inline-block, block,
+            or list-item element) or{" "}
+            <strong>establishes a formatting context</strong> (such as a table
+            container, flex container, grid container, or the block container
+            itself).
+          </li>
+          <li>
+            If the <code>position</code> property is{" "}
+            <strong>
+              <code>absolute</code>
+            </strong>
+            , the containing block is formed by the edge of the{" "}
+            <em>padding box</em> of the nearest ancestor element that has a{" "}
+            <code>position</code> value other than <code>static</code> (
+            <code>fixed</code>, <code>absolute</code>, <code>relative</code>, or{" "}
+            <code>sticky</code>).
+          </li>
+          <li>
+            If the <code>position</code> property is{" "}
+            <strong>
+              <code>fixed</code>
+            </strong>
+            , the containing block is established by the{" "}
+            <a href="/en-US/docs/Glossary/Viewport">viewport</a> (in the case of
+            continuous media) or the page area (in the case of paged media).
+          </li>
+          <li>
+            If the <code>position</code> property is{" "}
+            <strong>
+              <code>absolute</code>
+            </strong>{" "}
+            or{" "}
+            <strong>
+              <code>fixed</code>
+            </strong>
+            , the containing block may also be formed by the edge of the{" "}
+            <em>padding box</em> of the nearest ancestor element that has the
+            following:
+            <ol>
+              <li>
+                A{" "}
+                <a href="/en-US/docs/Web/CSS/transform">
+                  <code>transform</code>
+                </a>{" "}
+                or{" "}
+                <a href="/en-US/docs/Web/CSS/perspective">
+                  <code>perspective</code>
+                </a>{" "}
+                value other than <code>none</code>
+              </li>
+              <li>
+                A{" "}
+                <a href="/en-US/docs/Web/CSS/will-change">
+                  <code>will-change</code>
+                </a>{" "}
+                value of <code>transform</code> or <code>perspective</code>
+              </li>
+              <li>
+                A{" "}
+                <a href="/en-US/docs/Web/CSS/filter">
+                  <code>filter</code>
+                </a>{" "}
+                value other than <code>none</code> or a <code>will-change</code>{" "}
+                value of <code>filter</code> (only works on Firefox).
+              </li>
+              <li>
+                A{" "}
+                <a href="/en-US/docs/Web/CSS/contain">
+                  <code>contain</code>
+                </a>{" "}
+                value of <code>layout</code>, <code>paint</code>,{" "}
+                <code>strict</code> or <code>content</code> (e.g.{" "}
+                <code>contain: paint;</code>)
+              </li>
+              <li>
+                A{" "}
+                <a href="/en-US/docs/Web/CSS/backdrop-filter">
+                  <code>backdrop-filter</code>
+                </a>{" "}
+                other than <code>none</code> (e.g.{" "}
+                <code>backdrop-filter: blur(10px);</code>)
+              </li>
+            </ol>
+          </li>
+        </ol>
+        From{" "}
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block">
+          MDN
+        </a>
+        .
+      </Slide>
+
+      {/* Slide on a common gotcha with fixed elements */}
+      <Slide>
+        <Playground
+          initialStyles={`header {
+  padding: 16px 32px;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+.cart-btn {
+  appearance: none;
+  background: #eee;
+  border: 2px solid #aaa;
+  padding: 8px 32px;
+  border-radius: 32px;
+}
+
+.cart-btn:hover {
+  background: #fff;
+}
+
+.cart-btn:active {
+  background: #aaa;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  padding: 32px;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.shop-item {
+  padding: 32px;
+}
+
+.shop-item h2 {
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.shop-item .price-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shop-item .price-wrapper .price {
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.shop-item .price-wrapper .price:after {
+  content: ' kr';
+}
+
+.buy-btn {
+  appearance: none;
+  border: none;
+  background: black;
+  color: white;
+}
+`}
+          initialCode={`<style>
+  .cart-btn {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+  }
+</style>
+
+<header>
+<h1>A great webshop.</h1>
+  <button class="cart-btn">
+    <img
+      src="http://localhost:5173/cart.svg"
+      width="32"
+      height="32"
+    />
+  </button>
+</header>
+
+<!-- This stuff isn't important -->
+<main id="items-container">
+</main>
+
+<script>
+  const duckItem = \`<div class="shop-item">
+  <img src="http://localhost:5173/duck.webp" />
+  <h2>Rubber duck</h2>
+  <div class="price-wrapper">
+    <p class="price">99</p>
+    <button class="buy-btn">Buy</button>
+  </div>
+</div>
+\`;
+  const container = document.querySelector("#items-container");
+  container.innerHTML = Array.from({ length: 24 }).fill(duckItem).join("\\n")
+</script>
+`}
+        />
+      </Slide>
+
+      {/* This is the same slide as above, but with the problematic behavior */}
+      <Slide>
+        <Playground
+          initialStyles={`header {
+  padding: 16px 32px;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+.cart-btn {
+  appearance: none;
+  background: #eee;
+  border: 2px solid #aaa;
+  padding: 8px 32px;
+  border-radius: 32px;
+}
+
+.cart-btn:hover {
+  background: #fff;
+}
+
+.cart-btn:active {
+  background: #aaa;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  padding: 32px;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.shop-item {
+  padding: 32px;
+}
+
+.shop-item h2 {
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.shop-item .price-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shop-item .price-wrapper .price {
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.shop-item .price-wrapper .price:after {
+  content: ' kr';
+}
+
+.buy-btn {
+  appearance: none;
+  border: none;
+  background: black;
+  color: white;
+}
+`}
+          initialCode={`<style>
+  header {
+    position: fixed;
+    top: 0;
+    transition: transform 300ms;
+  }
+
+  header.hidden {
+    transform: translateY(-100%);
+  }
+
+  main {
+    margin-top: 104px;
+  }
+  
+  .cart-btn {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+  }
+
+  .hide-btn {
+    position: fixed;
+    bottom: 32px;
+    left: 32px;
+  }
+</style>
+
+<header>
+<h1>A great webshop.</h1>
+  <button class="cart-btn">
+    <img
+      src="http://localhost:5173/cart.svg"
+      width="32"
+      height="32"
+    />
+  </button>
+</header>
+<button
+  class="hide-btn"
+  id="hide-btn"
+>
+  Hide header
+</button>
+
+<!-- This stuff isn't important -->
+<main id="items-container">
+</main>
+
+<script>
+  const header = document.querySelector('header');
+  const hideBtn = document.querySelector('#hide-btn');
+  hideBtn.addEventListener('click', () => {
+    header.classList.toggle('hidden');
+  })
+</script>
+
+<script>
+  const duckItem = \`<div class="shop-item">
+  <img src="http://localhost:5173/duck.webp" />
+  <h2>Rubber duck</h2>
+  <div class="price-wrapper">
+    <p class="price">99</p>
+    <button class="buy-btn">Buy</button>
+  </div>
+</div>
+\`;
+  const container = document.querySelector('#items-container');
+  container.innerHTML = Array.from({ length: 24 }).fill(duckItem).join('\\n')
+</script>
+`}
+        />
+      </Slide>
+
+      <Slide>
+        <SectionTitle>stacking context</SectionTitle>
+      </Slide>
+
+      <Slide></Slide>
+
+      {/* This stuff is for the stacking context: */}
+      <Slide>
+        <ul>
+          <li>
+            Root element of the document (<code>&lt;html&gt;</code>).
+          </li>
+          <li>
+            Element with a position value absolute or relative and z-index value
+            other than auto.
+          </li>
+          <li>
+            Element with a position value fixed or sticky (sticky for all mobile
+            browsers, but not older desktop browsers).
+          </li>
+          <li>
+            Element that is a child of a flex container, with z-index value
+            other than auto.
+          </li>
+          <li>
+            Element that is a child of a grid container, with z-index value
+            other than auto.
+          </li>
+          <li>
+            Element with an opacity value less than 1 (See the specification for
+            opacity).
+          </li>
+          <li>Element with a mix-blend-mode value other than normal.</li>
+          <li>
+            Element with any of the following properties with value other than
+            none:
+          </li>
+          <ul>
+            <li>transform</li>
+            <li>filter</li>
+            <li>backdrop-filter</li>
+            <li>perspective</li>
+            <li>clip-path</li>
+            <li>mask / mask-image / mask-border</li>
+          </ul>
+          <li>Element with an isolation value isolate.</li>
+          <li>
+            Element with a will-change value specifying any property that would
+            create a stacking context on non-initial value (see this post).
+          </li>
+          <li>
+            Element with a contain value of layout, or paint, or a composite
+            value that includes either of them (i.e. contain: strict, contain:
+            content).
+          </li>
+        </ul>
       </Slide>
 
       <FullScreenButton scrollContainerRef={scrollRef} />

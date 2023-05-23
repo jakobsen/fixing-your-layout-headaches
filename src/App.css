@@ -18,3 +18,14 @@
   overflow: auto;
   background-color: white;
 }
+
+code {
+  background: #dedede;
+  display: inline-block;
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+
+ol ol {
+  list-style: lower-roman;
+}
