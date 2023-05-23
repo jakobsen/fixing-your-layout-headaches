@@ -10,7 +10,8 @@ import SectionTitle from "./components/SectionTitle";
 
 import styles from "./temp.module.css";
 import "./App.css";
-import Layouts from "./components/Layouts";
+import LayoutsSlide from "./components/Layouts";
+import PositionsSlide from "./components/PositionsSlide/PositionsSlide";
 
 function App() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -92,60 +93,8 @@ function App() {
       <Slide>
         <SectionTitle>position</SectionTitle>
       </Slide>
-      <Layouts />
-      <Slide>
-        <h2
-          style={{
-            fontSize: "3rem",
-            fontFamily: "Iosevka",
-            marginRight: "3rem",
-          }}
-        >
-          position:
-        </h2>
-        <ul
-          style={{
-            fontSize: "3rem",
-            display: "flex",
-            flexDirection: "column",
-            gap: "16px",
-            fontFamily: "Iosevka",
-          }}
-        >
-          <li>static</li>
-          <li>relative</li>
-          <li>absolute</li>
-          <li>sticky</li>
-          <li>fixed</li>
-          <li>where-i-want-it</li>
-        </ul>
-      </Slide>
-      <Slide>
-        <h2
-          style={{
-            fontSize: "3rem",
-            fontFamily: "Iosevka",
-            marginRight: "3rem",
-          }}
-        >
-          position:
-        </h2>
-        <ul
-          style={{
-            fontSize: "3rem",
-            display: "flex",
-            flexDirection: "column",
-            gap: "16px",
-            fontFamily: "Iosevka",
-          }}
-        >
-          <li>static</li>
-          <li>relative</li>
-          <li>absolute</li>
-          <li>sticky</li>
-          <li>fixed</li>
-        </ul>
-      </Slide>
+      <LayoutsSlide />
+      <PositionsSlide />
 
       <Slide>
         <Playground
@@ -711,8 +660,6 @@ main {
       <Slide>
         <SectionTitle>stacking context</SectionTitle>
       </Slide>
-
-      <Slide></Slide>
 
       {/* This stuff is for the stacking context: */}
       <Slide>

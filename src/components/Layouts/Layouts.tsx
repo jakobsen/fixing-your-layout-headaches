@@ -1,63 +1,49 @@
 import { useState } from "react";
 import Slide from "../Slide";
 
-import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import styles from "./Layouts.module.css";
 
-export default function Layouts() {
-  const [showUnused, setShowUnused] = useState(true);
-
-  const listVariants = {
-    visible: {
-      opacity: 1,
-    },
-    fade: {
-      opacity: 1,
-    },
-  };
-
-  const itemVariants = {
-    visible: {
-      opacity: 1,
-    },
-    fade: {
-      opacity: 0,
-    },
-  };
+export default function LayoutsSlide() {
+  const [currentVariant, setCurrentVariant] = useState<"visible" | "hidden">(
+    "visible"
+  );
 
   return (
     <Slide>
-      <motion.ul
+      <div
         className={styles.wrapper}
-        onClick={() => setShowUnused((e) => !e)}
-        variants={listVariants}
+        onClick={() =>
+          setCurrentVariant((variant) =>
+            variant == "visible" ? "hidden" : "visible"
+          )
+        }
       >
-        <LayoutGroup>
-          <motion.li>Normal flow</motion.li>
+        <ul className={styles.list}>
+          <li>Normal flow</li>
 
-          <motion.li>Positioned layout</motion.li>
+          <li>Positioned layout</li>
+        </ul>
 
-          <AnimatePresence>
-            {showUnused && (
-              <>
-                <motion.li variants={itemVariants}>Table layout</motion.li>
+        <motion.ul
+          className={styles.list}
+          variants={{
+            visible: { height: "auto", opacity: 1 },
+            hidden: { height: 0, opacity: 0 },
+          }}
+          animate={currentVariant}
+        >
+          <li>Table layout</li>
 
-                <motion.li variants={itemVariants}>Float layout</motion.li>
+          <li>Float layout</li>
 
-                <motion.li variants={itemVariants}>
-                  Multi-column layout
-                </motion.li>
+          <li>Multi-column layout</li>
 
-                <motion.li variants={itemVariants}>
-                  Flexible box layout
-                </motion.li>
+          <li>Flexible box layout</li>
 
-                <motion.li variants={itemVariants}>Grid layout</motion.li>
-              </>
-            )}
-          </AnimatePresence>
-        </LayoutGroup>
-      </motion.ul>
+          <li>Grid layout</li>
+        </motion.ul>
+      </div>
     </Slide>
   );
 }

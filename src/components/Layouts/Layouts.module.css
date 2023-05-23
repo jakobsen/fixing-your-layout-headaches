@@ -1,6 +1,13 @@
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.list {
   font-size: 3rem;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  overflow: hidden;
 }
