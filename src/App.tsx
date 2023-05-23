@@ -661,6 +661,127 @@ main {
         <SectionTitle>stacking context</SectionTitle>
       </Slide>
 
+      <Slide>
+        <Playground
+          initialStyles={`:root {
+  --background-color: #111;
+}
+
+header {
+  background: var(--background-color);
+  color: white;
+  padding: 32px 64px;
+  border-bottom: 3px solid deeppink;
+}
+
+header h1 {
+
+}
+
+main {
+  padding: 32px 32px;
+}
+
+.wops {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.cookie-banner {
+  width: 90vw;
+  background: var(--background-color);
+  color: white;
+  padding: 32px;
+  border-radius: 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  box-shadow: 12px 8px 20px 0px hsla(0deg 0% 0% / 0.4);
+}
+
+.button-wrapper {
+  display: flex;
+  gap: 16px;
+}
+
+.button-wrapper button {
+  appearance: none;
+  border: 1px solid white;
+  background: none;
+  padding: 8px;
+  color: inherit;
+  border-radius: 16px;
+}
+
+.button-wrapper button:hover {
+  background: white;
+  color: var(--background-color);
+}
+
+`}
+          initialCode={`<style>
+  header {
+    position: relative;
+    z-index: 2;
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+
+<header>
+  <h1>He's done it again!</h1>
+  <p>Yet another great site.</p>
+</header>
+<main>
+  <h2>This is super interesting</h2>
+  <p>Good lord, this is some <em>quality</em> content.</p>
+  <p>I can't wait to see what it says down below!</p>
+
+  <div class="cookie-banner">
+    <div>
+      <h2>Oh wow, cookies! 🍪😋</h2>
+      <p>
+        Accept cookies so that we can
+        <span class="wops">sell your data</span>
+        give you a good experience.
+      </p>
+    </div>
+    <div class="button-wrapper">
+      <button>Okay</button>
+      <button>I'm lame</button>
+    </div>
+
+</main>`}
+        ></Playground>
+      </Slide>
+
+      <Slide>
+        <Playground
+          initialCode={`<header>
+  <h1>Every SAAS pricing page ever</h1>
+</header>
+
+<main>
+  <section>
+    <h2>Why you need our product</h2>
+    <p>Bla bla bla bla bla bla</p>
+  </section>
+  <section class="pricing">
+    <div></div>
+    <div></div>
+    <div></div>
+  </section>
+  <section class="bottom">
+    <h2>This is just here so we can scroll</h2>
+    <p>Also, here's a lot of empty space:</p>
+  </section>
+</main>`}
+        />
+      </Slide>
+
       {/* This stuff is for the stacking context: */}
       <Slide>
         <ul>
@@ -711,6 +832,12 @@ main {
             content).
           </li>
         </ul>
+      </Slide>
+
+      <Slide>
+        <h1 style={{ fontFamily: "'Iosevka', monospace", fontSize: "6rem" }}>
+          eaj@blank.no
+        </h1>
       </Slide>
 
       <FullScreenButton scrollContainerRef={scrollRef} />
