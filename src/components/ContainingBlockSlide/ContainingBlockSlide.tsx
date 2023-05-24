@@ -66,7 +66,7 @@ export default function ContainingBlockSlide() {
           MDN
         </a>
         .
-        {finalIndex > 5 && (
+        {finalIndex > listItems.length && (
           <motion.div
             initial={{ opacity: 0, scale: 2 }}
             animate={{ opacity: 1, scale: 1 }}
