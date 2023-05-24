@@ -12,10 +12,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  font-size: 24px;
 }
 
-code, pre {
-    font-family: 'Iosevka';
+code,
+pre {
+  font-family: "Iosevka";
 }
 
 a {

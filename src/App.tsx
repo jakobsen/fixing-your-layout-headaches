@@ -1,6 +1,4 @@
 import { useEffect, useRef } from "react";
-import BoxModelDemo from "./components/BoxModelDemo/BoxModelDemo";
-import BoxSizingDemo from "./components/BoxSizingDemo/BoxSizingDemo";
 import Playground from "./components/Playground";
 import Slide from "./components/Slide/Slide";
 
@@ -8,10 +6,10 @@ import FullScreenButton from "./components/FullScreenButton/FullScreenButton";
 import NavButtons from "./components/NavButtons/NavButtons";
 import SectionTitle from "./components/SectionTitle";
 
-import styles from "./temp.module.css";
 import "./App.css";
 import LayoutsSlide from "./components/Layouts";
 import PositionsSlide from "./components/PositionsSlide/PositionsSlide";
+import ContainingBlockSlide from "./components/ContainingBlockSlide";
 
 function App() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -33,37 +31,25 @@ function App() {
     <div className="app-scroll-container" ref={scrollRef}>
       <Slide>
         <SectionTitle>fixing your layout headaches.</SectionTitle>
+        <p
+          style={{ marginTop: "2rem", marginInline: "auto", fontSize: "2rem" }}
+        >
+          by erik andré jakobsen.
+        </p>
       </Slide>
 
       <Slide>
         <SectionTitle>
-          <span style={{ textDecoration: "underline" }}>css-for-js.dev</span>
+          <span style={{ textDecoration: "underline" }}>css-for-js.dev</span>.
         </SectionTitle>
-      </Slide>
-
-      <Slide>
-        <SectionTitle>preliminary stuff.</SectionTitle>
-      </Slide>
-
-      <Slide>
-        <BoxModelDemo />
-      </Slide>
-      <Slide>
-        <div className={styles.codeblock}>
-          <span className={styles.selector}>*, *::before, *::after</span>{" "}
-          <span className={styles.bracket}>&#123;</span> <br />
-          &nbsp;&nbsp;<span className={styles.property}>box-sizing</span>:{" "}
-          <span className={styles.value}>border-box</span>;
-          <br />
-          <span className={styles.bracket}>&#125;</span>
-        </div>
-      </Slide>
-      <Slide>
-        <BoxSizingDemo />
       </Slide>
       <Slide>
         <Playground
           showCssReset
+          initialStyles={`body {
+  background: black;
+}
+`}
           initialCode={`<style>
 .box {
   width: 200px;
@@ -91,7 +77,7 @@ function App() {
       </Slide>
 
       <Slide>
-        <SectionTitle>position</SectionTitle>
+        <SectionTitle>position.</SectionTitle>
       </Slide>
       <LayoutsSlide />
       <PositionsSlide />
@@ -134,7 +120,7 @@ function App() {
           initialStyles={`header {
   text-align: center;
   padding: 32px;
-  border-bottom: 2px solid currentColor;
+  border-bottom: 4px solid currentColor;
   font-size: 2rem;
 }
 
@@ -145,8 +131,8 @@ footer {
 }
 
 .help-btn {
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   display: grid;
   place-items: center;
   font-size: 1.5rem;
@@ -170,6 +156,8 @@ footer {
 section {
   height: 100vh;
   padding: 16px 32px;
+  border: 4px solid currentColor;
+  margin: 32px;
 }
 
 .article-heading {
@@ -207,16 +195,12 @@ section {
       </Slide>
 
       <Slide>
-        <SectionTitle>containing block</SectionTitle>
+        <SectionTitle>containing block.</SectionTitle>
       </Slide>
 
       <Slide>
         <Playground
-          initialStyles={`:root {
-  font-size: 20px;
-}
-          
-body {
+          initialStyles={`body {
   font-family: 'Georgia';
 }
 
@@ -296,122 +280,13 @@ figcaption {
         ></Playground>
       </Slide>
 
-      <Slide>
-        <ol>
-          <li>
-            If the <code>position</code> property is{" "}
-            <strong>
-              <code>static</code>
-            </strong>
-            ,{" "}
-            <strong>
-              <code>relative</code>
-            </strong>
-            , or{" "}
-            <strong>
-              <code>sticky</code>
-            </strong>
-            , the containing block is formed by the edge of the{" "}
-            <em>content box</em> of the nearest ancestor element that is either{" "}
-            <strong>a block container</strong> (such as an inline-block, block,
-            or list-item element) or{" "}
-            <strong>establishes a formatting context</strong> (such as a table
-            container, flex container, grid container, or the block container
-            itself).
-          </li>
-          <li>
-            If the <code>position</code> property is{" "}
-            <strong>
-              <code>absolute</code>
-            </strong>
-            , the containing block is formed by the edge of the{" "}
-            <em>padding box</em> of the nearest ancestor element that has a{" "}
-            <code>position</code> value other than <code>static</code> (
-            <code>fixed</code>, <code>absolute</code>, <code>relative</code>, or{" "}
-            <code>sticky</code>).
-          </li>
-          <li>
-            If the <code>position</code> property is{" "}
-            <strong>
-              <code>fixed</code>
-            </strong>
-            , the containing block is established by the{" "}
-            <a href="/en-US/docs/Glossary/Viewport">viewport</a> (in the case of
-            continuous media) or the page area (in the case of paged media).
-          </li>
-          <li>
-            If the <code>position</code> property is{" "}
-            <strong>
-              <code>absolute</code>
-            </strong>{" "}
-            or{" "}
-            <strong>
-              <code>fixed</code>
-            </strong>
-            , the containing block may also be formed by the edge of the{" "}
-            <em>padding box</em> of the nearest ancestor element that has the
-            following:
-            <ol>
-              <li>
-                A{" "}
-                <a href="/en-US/docs/Web/CSS/transform">
-                  <code>transform</code>
-                </a>{" "}
-                or{" "}
-                <a href="/en-US/docs/Web/CSS/perspective">
-                  <code>perspective</code>
-                </a>{" "}
-                value other than <code>none</code>
-              </li>
-              <li>
-                A{" "}
-                <a href="/en-US/docs/Web/CSS/will-change">
-                  <code>will-change</code>
-                </a>{" "}
-                value of <code>transform</code> or <code>perspective</code>
-              </li>
-              <li>
-                A{" "}
-                <a href="/en-US/docs/Web/CSS/filter">
-                  <code>filter</code>
-                </a>{" "}
-                value other than <code>none</code> or a <code>will-change</code>{" "}
-                value of <code>filter</code> (only works on Firefox).
-              </li>
-              <li>
-                A{" "}
-                <a href="/en-US/docs/Web/CSS/contain">
-                  <code>contain</code>
-                </a>{" "}
-                value of <code>layout</code>, <code>paint</code>,{" "}
-                <code>strict</code> or <code>content</code> (e.g.{" "}
-                <code>contain: paint;</code>)
-              </li>
-              <li>
-                A{" "}
-                <a href="/en-US/docs/Web/CSS/backdrop-filter">
-                  <code>backdrop-filter</code>
-                </a>{" "}
-                other than <code>none</code> (e.g.{" "}
-                <code>backdrop-filter: blur(10px);</code>)
-              </li>
-            </ol>
-          </li>
-        </ol>
-        From{" "}
-        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block">
-          MDN
-        </a>
-        .
-      </Slide>
+      <ContainingBlockSlide />
 
       {/* Slide on a common gotcha with fixed elements */}
       <Slide>
         <Playground
           initialStyles={`header {
   padding: 16px 32px;
-  max-width: 720px;
-  margin-inline: auto;
 }
 
 h1 {
@@ -440,7 +315,7 @@ main {
   grid-template-columns: 1fr 1fr;
   gap: 32px;
   padding: 32px;
-  max-width: 720px;
+  max-width: 900px;
   margin-inline: auto;
 }
 
@@ -483,7 +358,7 @@ main {
 </style>
 
 <header>
-<h1>A great webshop.</h1>
+  <h1>A great webshop.</h1>
   <button class="cart-btn">
     <img
       src="http://localhost:5173/cart.svg"
@@ -499,7 +374,7 @@ main {
 
 <script>
   const duckItem = \`<div class="shop-item">
-  <img src="http://localhost:5173/duck.webp" />
+  <img src="http://localhost:5173/duck.png" />
   <h2>Rubber duck</h2>
   <div class="price-wrapper">
     <p class="price">99</p>
@@ -519,8 +394,6 @@ main {
         <Playground
           initialStyles={`header {
   padding: 16px 32px;
-  max-width: 720px;
-  margin-inline: auto;
 }
 
 h1 {
@@ -549,7 +422,7 @@ main {
   grid-template-columns: 1fr 1fr;
   gap: 32px;
   padding: 32px;
-  max-width: 720px;
+  max-width: 900px;
   margin-inline: auto;
 }
 
@@ -612,7 +485,7 @@ main {
 </style>
 
 <header>
-<h1>A great webshop.</h1>
+  <h1>A great webshop.</h1>
   <button class="cart-btn">
     <img
       src="http://localhost:5173/cart.svg"
@@ -642,7 +515,7 @@ main {
 
 <script>
   const duckItem = \`<div class="shop-item">
-  <img src="http://localhost:5173/duck.webp" />
+  <img src="http://localhost:5173/duck.png" />
   <h2>Rubber duck</h2>
   <div class="price-wrapper">
     <p class="price">99</p>
@@ -658,7 +531,7 @@ main {
       </Slide>
 
       <Slide>
-        <SectionTitle>stacking context</SectionTitle>
+        <SectionTitle>stacking context.</SectionTitle>
       </Slide>
 
       <Slide>
@@ -693,10 +566,11 @@ main {
   color: white;
   padding: 32px;
   border-radius: 16px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
   box-shadow: 12px 8px 20px 0px hsla(0deg 0% 0% / 0.4);
+}
+
+.cookie-banner p {
+  margin-bottom: 32px;
 }
 
 .button-wrapper {
@@ -729,6 +603,10 @@ main {
     position: relative;
     z-index: 1;
   }
+
+  .cookie-banner {
+
+  }
 </style>
 
 <header>
@@ -753,6 +631,7 @@ main {
       <button>Okay</button>
       <button>I'm lame</button>
     </div>
+  </div>
 
 </main>`}
         ></Playground>
@@ -760,21 +639,210 @@ main {
 
       <Slide>
         <Playground
-          initialCode={`<header>
+          initialStyles={`:root {
+  --text-color: #030b2f;
+  --text-faded: #80838c;
+  --brand-color: #5f7cea;
+  --white: #f5f6ff;
+
+  --max-text-width: calc(50 * 1rem);
+
+  --default-shadow: 0px 8px 10px 0px hsla(0deg 0% 0% / 0.1);
+}
+
+body {
+  color: var(--text-color);
+  background-color: var(--white);
+}
+
+header {
+  background-color: #fff;
+  padding: 40px;
+  width: 100%;
+  box-shadow: var(--default-shadow);
+}
+
+header h1, .text-section {
+  max-width: var(--max-text-width);
+  margin: auto;
+}
+
+.text-section {
+  margin-bottom: 80px;
+}
+
+main {
+  padding: 200px 32px;
+}
+
+.bottom {
+  height: 100vh;
+}
+
+
+.pricing {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 200px;
+  margin-inline: auto;
+  max-width: min(1500px, 90vw);
+}
+
+.price-option {
+  flex: 1;
+  padding: 40px 40px 80px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: var(--default-shadow);
+}
+
+.price-option ul {
+  list-style-type: "– ";
+}
+
+.price-option.popular {
+  background: var(--text-color);
+  color: var(--white);
+}
+
+.price-option.popular .amount {
+  color: var(--white);
+}
+
+.price-option__header__title {
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.amount-wrapper {
+  display: flex;
+  align-items: baseline;
+  color: var(--text-faded);
+}
+
+.amount {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.buy-btn {
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--white);
+  background-color: var(--brand-color);
+  text-align: center;
+  border-radius: 8px;
+  margin-block: 20px;
+}
+
+.buy-btn:visited {
+  color: inherit;
+}
+
+`}
+          initialCode={`<style>
+  header {
+    position: fixed;
+    top: 0;
+  }
+
+  .price-option.popular {
+      flex: 1.3;
+      margin: -32px -40px -20px;
+  }
+</style>
+
+<header>
   <h1>Every SAAS pricing page ever</h1>
 </header>
 
 <main>
-  <section>
+  <section class="text-section">
     <h2>Why you need our product</h2>
-    <p>Bla bla bla bla bla bla</p>
+    <p>Chicken.</p>
+    <p>Chicken chicken, chicken chicken chicken chicken.
+    Chicken chicken chicken chicken chicken.</p>
+    <p>Chicken—chicken?</p>
   </section>
   <section class="pricing">
-    <div></div>
-    <div></div>
-    <div></div>
-  </section>
-  <section class="bottom">
+  <article class="price-option">
+    <div class="price-option__header">
+      <div class="circle-icon"></div>
+      <h2 class="price-option__header__title">Lite</h2>
+    </div>
+    <p>Our cheapest offering</p>
+    <div class="amount-wrapper">
+      <p class="amount">
+        $19
+      </p>
+      / per month
+    </div>
+    <a href="#" class="buy-btn">Get it now</a>
+    <div class="features">
+      <h2>Features</h2>
+      <ul>
+        <li>What are you, poor?</li>
+        <li>Fine, buy the cheap one</li>
+        <li>But no customer support for you!</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="price-option popular">
+    <div class="price-option__header">
+      <div class="circle-icon"></div>
+      <h2 class="price-option__header__title">Pro</h2>
+    </div>
+    <p>Best value! (🤞)</p>
+    <div class="amount-wrapper">
+      <p class="amount">
+        $39
+      </p>
+      / per month
+    </div>
+    <a href="#" class="buy-btn">Get it now</a>
+    <div class="features">
+      <h2>Features</h2>
+      … everything from lite, and
+      <ul>
+        <li>This will actually work!</li>
+        <li>probably</li>
+        <li>We'll read your emails and respond if we're hit by a sudden bolt of inspiration</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="price-option">
+    <div class="price-option__header">
+      <div class="circle-icon"></div>
+      <h2 class="price-option__header__title">Enterprise</h2>
+    </div>
+    <p>If you have too much money</p>
+    <div class="amount-wrapper">
+      <p class="amount">
+        $1M
+      </p>
+      / per month
+    </div>
+    <a href="#" class="buy-btn">Get it now</a>
+    <div class="features">
+      <h2>Features</h2>
+      … everything from pro, and
+      <ul>
+        <li>We will treat you like a <em>god</em></li>
+        <li>We are not worthy</li>
+        <li>Call us anytime at my home number</li>
+      </ul>
+    </div>
+  </article>
+</section>
+
+  <section class="text-section bottom">
     <h2>This is just here so we can scroll</h2>
     <p>Also, here's a lot of empty space:</p>
   </section>
@@ -783,7 +851,7 @@ main {
       </Slide>
 
       {/* This stuff is for the stacking context: */}
-      <Slide>
+      {/* <Slide>
         <ul>
           <li>
             Root element of the document (<code>&lt;html&gt;</code>).
@@ -832,11 +900,26 @@ main {
             content).
           </li>
         </ul>
-      </Slide>
+      </Slide> */}
 
       <Slide>
-        <h1 style={{ fontFamily: "'Iosevka', monospace", fontSize: "6rem" }}>
+        <h1
+          style={{
+            fontFamily: "'Iosevka', monospace",
+            fontSize: "6rem",
+            marginBottom: "15vh",
+          }}
+        >
           eaj@blank.no
+        </h1>
+        <h1
+          style={{
+            fontFamily: "'Iosevka', monospace",
+            fontSize: "6rem",
+            marginBottom: "5vh",
+          }}
+        >
+          github.com/jakobsen
         </h1>
       </Slide>
 

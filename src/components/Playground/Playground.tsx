@@ -32,7 +32,7 @@ export default function Playground({
         ...aquaBlue,
         font: {
           mono: `"Iosevka", ${aquaBlue.font.mono}`,
-          size: "24px",
+          size: "32px",
           lineHeight: "1.3",
         },
       }}
@@ -48,6 +48,10 @@ export default function Playground({
 
 * {
   margin: 0;
+}
+
+:root {
+  font-size: 24px;
 }
 
 html, body {
@@ -74,9 +78,6 @@ p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
 
-#root {
-  isolation: isolate;
-}
 `,
         },
         "/styles.css": {
