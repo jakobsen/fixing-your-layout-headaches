@@ -260,7 +260,7 @@ figcaption {
     </p>
     <figure>
       <img
-        src="http://localhost:5173/skiers.jpg"
+        src="${window.location.origin}/skiers.jpg"
       />
       <a class="cta-button" href="#">
         Come explore with us
@@ -361,7 +361,7 @@ main {
   <h1>A great webshop.</h1>
   <button class="cart-btn">
     <img
-      src="http://localhost:5173/cart.svg"
+      src="${window.location.origin}/cart.svg"
       width="32"
       height="32"
     />
@@ -374,7 +374,7 @@ main {
 
 <script>
   const duckItem = \`<div class="shop-item">
-  <img src="http://localhost:5173/duck.png" />
+  <img src="${window.location.origin}/duck.png" />
   <h2>Rubber duck</h2>
   <div class="price-wrapper">
     <p class="price">99</p>
@@ -488,7 +488,7 @@ main {
   <h1>A great webshop.</h1>
   <button class="cart-btn">
     <img
-      src="http://localhost:5173/cart.svg"
+      src="${window.location.origin}/cart.svg"
       width="32"
       height="32"
     />
@@ -515,7 +515,7 @@ main {
 
 <script>
   const duckItem = \`<div class="shop-item">
-  <img src="http://localhost:5173/duck.png" />
+  <img src="${window.location.origin}/duck.png" />
   <h2>Rubber duck</h2>
   <div class="price-wrapper">
     <p class="price">99</p>
