@@ -752,8 +752,8 @@ main {
   }
 
   .price-option.popular {
-      flex: 1.3;
-      margin: -32px -40px -20px;
+    flex: 1.3;
+    margin: -32px -40px -20px;
   }
 </style>
 
