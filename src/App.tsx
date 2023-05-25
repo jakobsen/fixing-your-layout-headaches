@@ -451,6 +451,12 @@ main {
   background: black;
   color: white;
 }
+
+.hide-btn {
+  position: fixed;
+  bottom: 32px;
+  left: 32px;
+}
 `}
           initialCode={`<style>
   header {
@@ -472,12 +478,6 @@ main {
     top: 24px;
     right: 32px;
   }
-
-  .hide-btn {
-    position: fixed;
-    bottom: 32px;
-    left: 32px;
-  }
 </style>
 
 <header>
@@ -490,6 +490,9 @@ main {
     />
   </button>
 </header>
+
+
+<!-- This stuff isn't important -->
 <button
   class="hide-btn"
   id="hide-btn"
@@ -497,7 +500,6 @@ main {
   Hide header
 </button>
 
-<!-- This stuff isn't important -->
 <main id="items-container">
 </main>
 

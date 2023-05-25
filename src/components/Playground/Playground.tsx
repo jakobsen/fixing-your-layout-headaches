@@ -32,7 +32,7 @@ export default function Playground({
         ...aquaBlue,
         font: {
           mono: `"Iosevka", ${aquaBlue.font.mono}`,
-          size: "32px",
+          size: "28px",
           lineHeight: "1.3",
         },
       }}
