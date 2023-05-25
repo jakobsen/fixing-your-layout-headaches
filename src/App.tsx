@@ -46,17 +46,14 @@ function App() {
       <Slide>
         <Playground
           showCssReset
-          initialStyles={`body {
-  background: black;
+          initialStyles={`.box {
+  --size: 200px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: calc(var(--size) / 10);
 }
 `}
           initialCode={`<style>
-.box {
-  width: 200px;
-  height: 200px;
-  border-radius: 20px;
-}
-
 .red {
   background: tomato;
 }
@@ -84,11 +81,11 @@ function App() {
 
       <Slide>
         <Playground
-          initialCode={`<style>
-.box {
-  width: 200px;
-  height: 200px;
-  border-radius: 20px;
+          initialStyles={`.box {
+  --size: 200px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: calc(var(--size) / 10);
 }
 
 .red {
@@ -101,8 +98,8 @@ function App() {
 
 .pink {
   background: hotpink;
-}
-
+}`}
+          initialCode={`<style>
 .blue.box {
   
 }
@@ -151,15 +148,15 @@ footer {
 .help-btn:active {
   background-color: hsl(0deg 0% 0% /0.2);
 }
-`}
-          initialCode={`<style>
+
 section {
   height: 100vh;
   padding: 16px 32px;
   border: 4px solid currentColor;
   margin: 32px;
 }
-
+`}
+          initialCode={`<style>
 .article-heading {
 
 }
@@ -197,6 +194,7 @@ section {
       <Slide>
         <SectionTitle>containing block.</SectionTitle>
       </Slide>
+      <ContainingBlockSlide />
 
       <Slide>
         <Playground
@@ -279,8 +277,6 @@ figcaption {
 `}
         ></Playground>
       </Slide>
-
-      <ContainingBlockSlide />
 
       {/* Slide on a common gotcha with fixed elements */}
       <Slide>
@@ -562,15 +558,15 @@ main {
 
 .cookie-banner {
   width: 90vw;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background: var(--background-color);
   color: white;
   padding: 32px;
   border-radius: 16px;
   box-shadow: 12px 8px 20px 0px hsla(0deg 0% 0% / 0.4);
-}
-
-.cookie-banner p {
-  margin-bottom: 32px;
 }
 
 .button-wrapper {
@@ -648,6 +644,8 @@ main {
   --max-text-width: calc(50 * 1rem);
 
   --default-shadow: 0px 8px 10px 0px hsla(0deg 0% 0% / 0.1);
+
+  font-size: 16px;
 }
 
 body {
@@ -795,7 +793,6 @@ main {
 
   <article class="price-option popular">
     <div class="price-option__header">
-      <div class="circle-icon"></div>
       <h2 class="price-option__header__title">Pro</h2>
     </div>
     <p>Best value! (🤞)</p>
